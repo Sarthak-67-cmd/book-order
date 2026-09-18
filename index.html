@@ -1,438 +1,304 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Book Sticker Shop</title>
-
+  <title>Book Sticker Orders</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">
-      📚 Book Stickers
-    </div>
+  <nav class="navbar">
+    <div class="logo">📚 Book Stickers</div>
 
-    <button class="cart-button" onclick="openCart()">
-      🛒 Cart
-      <span id="cartCount">0</span>
+    <button type="button" class="cart-button" onclick="scrollToOrder()">
+      📝 Order
     </button>
-  </header>
+  </nav>
 
 
   <!-- HERO -->
-  <section class="hero">
-    <div>
-      <p class="small-title">COLLECT • READ • STICK</p>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-icon">📚✨</div>
 
-      <h1>
-        Book Stickers<br>
-        <span>Collection</span>
-      </h1>
+      <h1>Customize Your Book Sticker</h1>
 
-      <p class="hero-text">
-        Choose your favorite book stickers and place your order.
-        Payment is made by cash.
+      <p>
+        Tell us what you want your sticker to look like.
+        No image required!
       </p>
 
-      <button class="browse-button" onclick="scrollToStickers()">
-        Browse Stickers ↓
+      <button
+        type="button"
+        class="start-button"
+        onclick="scrollToOrder()"
+      >
+        Customize My Sticker
       </button>
     </div>
-
-    <div class="hero-book">
-      📖
-    </div>
-  </section>
-
-
-  <!-- STICKERS -->
-  <main class="container" id="stickers">
-
-    <div class="section-heading">
-      <div>
-        <p class="small-title">OUR COLLECTION</p>
-        <h2>Choose Your Stickers</h2>
-      </div>
-
-      <div class="sticker-count">
-        <span id="stickerTotal">0</span> stickers
-      </div>
-    </div>
-
-
-    <div class="sticker-grid" id="stickerGrid">
-
-      <!-- STICKER 1 -->
-      <div class="sticker-card">
-        <div class="sticker-image purple">
-          ⚡
-        </div>
-
-        <div class="sticker-info">
-          <p class="book-label">FANTASY</p>
-          <h3>Wizard Adventure</h3>
-          <p class="description">
-            A magical book-themed sticker.
-          </p>
-
-          <div class="card-bottom">
-            <strong>₹20</strong>
-            <button onclick="addSticker('Wizard Adventure', 20)">
-              + Add Sticker
-            </button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- STICKER 2 -->
-      <div class="sticker-card">
-        <div class="sticker-image blue">
-          🌊
-        </div>
-
-        <div class="sticker-info">
-          <p class="book-label">ADVENTURE</p>
-          <h3>Ocean Quest</h3>
-          <p class="description">
-            Perfect for adventure-book lovers.
-          </p>
-
-          <div class="card-bottom">
-            <strong>₹25</strong>
-            <button onclick="addSticker('Ocean Quest', 25)">
-              + Add Sticker
-            </button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- STICKER 3 -->
-      <div class="sticker-card">
-        <div class="sticker-image orange">
-          🔥
-        </div>
-
-        <div class="sticker-info">
-          <p class="book-label">ADVENTURE</p>
-          <h3>Dragon Rider</h3>
-          <p class="description">
-            A fiery sticker inspired by fantasy books.
-          </p>
-
-          <div class="card-bottom">
-            <strong>₹30</strong>
-            <button onclick="addSticker('Dragon Rider', 30)">
-              + Add Sticker
-            </button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- STICKER 4 -->
-      <div class="sticker-card">
-        <div class="sticker-image green">
-          🌿
-        </div>
-
-        <div class="sticker-info">
-          <p class="book-label">NATURE</p>
-          <h3>Forest Story</h3>
-          <p class="description">
-            A cute nature-inspired book sticker.
-          </p>
-
-          <div class="card-bottom">
-            <strong>₹15</strong>
-            <button onclick="addSticker('Forest Story', 15)">
-              + Add Sticker
-            </button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- STICKER 5 -->
-      <div class="sticker-card">
-        <div class="sticker-image pink">
-          🌙
-        </div>
-
-        <div class="sticker-info">
-          <p class="book-label">MYSTERY</p>
-          <h3>Midnight Mystery</h3>
-          <p class="description">
-            A mysterious night-themed sticker.
-          </p>
-
-          <div class="card-bottom">
-            <strong>₹20</strong>
-            <button onclick="addSticker('Midnight Mystery', 20)">
-              + Add Sticker
-            </button>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- STICKER 6 -->
-      <div class="sticker-card">
-        <div class="sticker-image yellow">
-          🔎
-        </div>
-
-        <div class="sticker-info">
-          <p class="book-label">MYSTERY</p>
-          <h3>Detective</h3>
-          <p class="description">
-            For fans of detective stories.
-          </p>
-
-          <div class="card-bottom">
-            <strong>₹25</strong>
-            <button onclick="addSticker('Detective', 25)">
-              + Add Sticker
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
+  </header>
 
 
   <!-- ORDER SECTION -->
-  <section class="order-section">
+  <main>
 
-    <div class="order-container">
+    <section class="order-section" id="order">
 
-      <div class="order-title">
-        <p class="small-title">ORDER</p>
-        <h2>Place Your Order</h2>
+      <div class="order-container">
 
-        <p>
-          Adding stickers is optional. You can submit the form even
-          without selecting a sticker.
+        <h2>🎨 Customize Your Sticker</h2>
+
+        <p class="section-description">
+          Describe your sticker in words. Be as creative as you want!
         </p>
-      </div>
 
 
-      <!-- FORMSPREE -->
-      <form
-        id="orderForm"
-        action="https://formspree.io/f/YOUR_FORMSPREE_FORM_ID"
-        method="POST"
-      >
+        <!-- CUSTOM STICKER -->
+        <div class="custom-box">
 
-        <div class="form-grid">
+          <h3>What sticker do you want?</h3>
 
-          <div class="form-group">
-            <label>Student Name *</label>
+          <p class="help-text">
+            Example: "A blue football with my name Sarthak written on it"
+          </p>
+
+          <textarea
+            id="stickerDescription"
+            placeholder="Describe your sticker here..."
+            maxlength="500"
+          ></textarea>
+
+          <div class="character-count">
+            <span id="characterCount">0</span>/500
+          </div>
+
+        </div>
+
+
+        <!-- STUDENT DETAILS -->
+        <div class="form-box">
+
+          <h3>👤 Student Details</h3>
+
+          <form
+            id="orderForm"
+            action="https://formspree.io/f/xvkggoaj"
+            method="POST"
+          >
+
+            <input
+              type="hidden"
+              name="sticker_customization"
+              id="stickerCustomization"
+            >
+
+            <input
+              type="hidden"
+              name="payment_method"
+              value="Cash"
+            >
+
+            <input
+              type="hidden"
+              name="order_type"
+              value="Custom Book Sticker"
+            >
+
+
+            <label for="studentName">
+              Student Name *
+            </label>
+
             <input
               type="text"
+              id="studentName"
               name="student_name"
               placeholder="Enter your name"
               required
             >
-          </div>
 
 
-          <div class="form-group">
-            <label>Class *</label>
+            <label for="class">
+              Class *
+            </label>
 
-            <select name="class" required>
+            <select
+              id="class"
+              name="class"
+              required
+            >
               <option value="">Select Class</option>
-              <option value="1">Class 1</option>
-              <option value="2">Class 2</option>
-              <option value="3">Class 3</option>
-              <option value="4">Class 4</option>
-              <option value="5">Class 5</option>
-              <option value="6">Class 6</option>
-              <option value="7">Class 7</option>
-              <option value="8">Class 8</option>
-              <option value="9">Class 9</option>
-              <option value="10">Class 10</option>
+              <option value="Class 1">Class 1</option>
+              <option value="Class 2">Class 2</option>
+              <option value="Class 3">Class 3</option>
+              <option value="Class 4">Class 4</option>
+              <option value="Class 5">Class 5</option>
+              <option value="Class 6">Class 6</option>
+              <option value="Class 7">Class 7</option>
+              <option value="Class 8">Class 8</option>
+              <option value="Class 9">Class 9</option>
+              <option value="Class 10">Class 10</option>
             </select>
-          </div>
 
 
-          <div class="form-group">
-            <label>Section *</label>
+            <label for="section">
+              Section *
+            </label>
 
             <input
               type="text"
+              id="section"
               name="section"
               placeholder="Example: A"
-              maxlength="5"
               required
             >
-          </div>
 
 
-          <div class="form-group">
-            <label>Phone Number *</label>
+            <label for="phone">
+              Phone Number *
+            </label>
 
             <input
               type="tel"
+              id="phone"
               name="phone"
               placeholder="Enter phone number"
               required
             >
-          </div>
 
 
-          <div class="form-group full">
-            <label>Email</label>
+            <label for="email">
+              Email <span>(Optional)</span>
+            </label>
 
             <input
               type="email"
+              id="email"
               name="email"
-              placeholder="Enter email (optional)"
+              placeholder="Enter your email"
             >
-          </div>
-
-        </div>
 
 
-        <!-- ORDER DETAILS -->
-        <div class="selected-order">
+            <label for="quantity">
+              Number of Stickers *
+            </label>
 
-          <div class="selected-header">
-            <h3>🛒 Selected Stickers</h3>
+            <select
+              id="quantity"
+              name="quantity"
+              required
+            >
+              <option value="">Select quantity</option>
+              <option value="1">1 Sticker</option>
+              <option value="2">2 Stickers</option>
+              <option value="3">3 Stickers</option>
+              <option value="4">4 Stickers</option>
+              <option value="5">5 Stickers</option>
+              <option value="10">10 Stickers</option>
+            </select>
+
+
+            <label for="notes">
+              Additional Notes <span>(Optional)</span>
+            </label>
+
+            <textarea
+              id="notes"
+              name="notes"
+              placeholder="Anything else we should know?"
+            ></textarea>
+
+
+            <!-- PAYMENT -->
+            <div class="payment-box">
+
+              <div class="payment-icon">💵</div>
+
+              <div>
+                <strong>Payment: Cash</strong>
+
+                <p>
+                  Pay in cash when your stickers are delivered.
+                </p>
+              </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+
+              <h3>📋 Order Summary</h3>
+
+              <div class="summary-row">
+                <span>Sticker description</span>
+                <span id="summaryDescription">
+                  Not entered
+                </span>
+              </div>
+
+              <div class="summary-row">
+                <span>Quantity</span>
+                <span id="summaryQuantity">
+                  Not selected
+                </span>
+              </div>
+
+            </div>
+
 
             <button
-              type="button"
-              class="clear-button"
-              onclick="clearCart()"
+              type="submit"
+              class="submit-button"
+              id="submitButton"
             >
-              Clear
+              🛍️ Place Order
             </button>
-          </div>
 
-
-          <div id="orderItems" class="order-items">
-            <p class="empty-cart">
-              No stickers selected — that's okay!
-            </p>
-          </div>
-
-
-          <div class="total-row">
-            <span>Total</span>
-            <strong id="totalPrice">₹0</strong>
-          </div>
+          </form>
 
         </div>
 
-
-        <!-- HIDDEN FORM DATA -->
-        <input
-          type="hidden"
-          name="sticker_order"
-          id="stickerOrderInput"
-        >
-
-        <input
-          type="hidden"
-          name="total_amount"
-          id="totalInput"
-        >
-
-        <input
-          type="hidden"
-          name="payment_method"
-          value="Cash"
-        >
-
-
-        <div class="form-group">
-          <label>Additional Notes</label>
-
-          <textarea
-            name="notes"
-            rows="4"
-            placeholder="Any additional information..."
-          ></textarea>
-        </div>
-
-
-        <div class="cash-notice">
-          💵 <div>
-            <strong>Payment: Cash</strong>
-            <p>
-              No online payment is required. Pay the amount in cash
-              when you receive your stickers.
-            </p>
-          </div>
-        </div>
-
-
-        <button type="submit" class="place-order">
-          Place Order →
-        </button>
-
-      </form>
-
-    </div>
-
-  </section>
-
-
-  <!-- CART POPUP -->
-  <div id="cartModal" class="modal">
-
-    <div class="modal-box">
-
-      <button class="close-modal" onclick="closeCart()">×</button>
-
-      <p class="small-title">YOUR CART</p>
-      <h2>Sticker Order</h2>
-
-      <div id="cartItems"></div>
-
-      <div class="modal-total">
-        <span>Total</span>
-        <strong id="modalTotal">₹0</strong>
       </div>
 
+    </section>
+
+  </main>
+
+
+  <!-- SUCCESS MODAL -->
+  <div
+    id="successModal"
+    class="modal"
+  >
+
+    <div class="success-content">
+
+      <div class="success-icon">
+        ✅
+      </div>
+
+      <h2>Order Placed!</h2>
+
+      <p>
+        Your custom sticker order has been submitted.
+      </p>
+
+      <p>
+        We will make the sticker according to your description.
+      </p>
+
+      <p class="cash-message">
+        💵 Please remember to pay in cash.
+      </p>
+
       <button
-        class="checkout-button"
-        onclick="goToCheckout()"
+        type="button"
+        onclick="closeSuccess()"
       >
-        Continue to Checkout →
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- SUCCESS MESSAGE -->
-  <div id="successMessage" class="success-message">
-
-    <div class="success-box">
-
-      <div class="success-icon">✓</div>
-
-      <h2>Order Submitted!</h2>
-
-      <p>
-        Your order has been sent successfully.
-      </p>
-
-      <p>
-        Remember to pay by <strong>cash</strong>.
-      </p>
-
-      <button onclick="closeSuccess()">
         Done
       </button>
 
@@ -441,9 +307,15 @@
   </div>
 
 
+  <!-- ERROR MESSAGE -->
+  <div id="toast"></div>
+
+
+  <!-- FOOTER -->
   <footer>
-    <p>📚 Book Sticker Collection</p>
-    <p>Collect your favorite stories.</p>
+    <p>
+      📚 Book Stickers • Customize • Create • Read ✨
+    </p>
   </footer>
 
 
@@ -451,4 +323,3 @@
 
 </body>
 </html>
-```
