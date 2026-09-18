@@ -1,114 +1,73 @@
-const description = document.getElementById("description");
-const count = document.getElementById("count");
+const description =
+  document.getElementById("description");
 
-const form = document.getElementById("orderForm");
+const count =
+  document.getElementById("count");
+
 const hiddenDescription =
   document.getElementById("hiddenDescription");
 
-const submitButton =
-  document.getElementById("submitButton");
 
-const success =
-  document.getElementById("success");
-
-
-/* SCROLL TO ORDER */
+/* =========================
+   GO TO ORDER
+========================= */
 
 function goToOrder() {
-  document.getElementById("order").scrollIntoView({
-    behavior: "smooth"
-  });
+
+  document
+    .getElementById("order")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
 }
 
 
-/* CHARACTER COUNTER */
+/* =========================
+   CHARACTER COUNTER
+========================= */
 
-description.addEventListener("input", function () {
+description.addEventListener(
+  "input",
+  function () {
 
-  count.textContent = description.value.length;
+    count.textContent =
+      description.value.length;
 
-});
+    hiddenDescription.value =
+      description.value.trim();
 
-
-/* FORM SUBMISSION */
-
-form.addEventListener("submit", async function (event) {
-
-  event.preventDefault();
-
-  hiddenDescription.value =
-    description.value.trim() ||
-    "No custom sticker description provided.";
+  }
+);
 
 
-  submitButton.disabled = true;
+/* =========================
+   BEFORE FORM SUBMISSION
+========================= */
 
-  submitButton.textContent =
-    "Submitting Order...";
+document
+  .querySelector("form")
+  .addEventListener(
+    "submit",
+    function () {
 
+      /*
+       * Custom sticker description is optional.
+       */
 
-  try {
+      if (
+        description.value.trim() === ""
+      ) {
 
-    const response = await fetch(
-      form.action,
-      {
-        method: "POST",
-        body: new FormData(form),
-        headers: {
-          "Accept": "application/json"
-        }
+        hiddenDescription.value =
+          "No custom sticker description provided.";
+
+      } else {
+
+        hiddenDescription.value =
+          description.value.trim();
+
       }
-    );
 
-
-    if (!response.ok) {
-      throw new Error("Submission failed");
     }
-
-
-    form.reset();
-
-    description.value = "";
-
-    count.textContent = "0";
-
-    success.classList.add("show");
-
-
-  } catch (error) {
-
-    console.error(error);
-
-    alert(
-      "Unable to submit the order. Please try again."
-    );
-
-  }
-
-
-  submitButton.disabled = false;
-
-  submitButton.textContent =
-    "🛍️ Place Order";
-
-});
-
-
-/* CLOSE SUCCESS */
-
-function closeSuccess() {
-
-  success.classList.remove("show");
-
-}
-
-
-/* CLOSE WHEN CLICKING OUTSIDE */
-
-success.addEventListener("click", function (event) {
-
-  if (event.target === success) {
-    closeSuccess();
-  }
-
-});
+  );
