@@ -1,292 +1,114 @@
-/* =========================
-   ELEMENTS
-========================= */
+const description = document.getElementById("description");
+const count = document.getElementById("count");
 
-const stickerDescription =
-  document.getElementById("stickerDescription");
-
-const characterCount =
-  document.getElementById("characterCount");
-
-const summaryDescription =
-  document.getElementById("summaryDescription");
-
-const quantity =
-  document.getElementById("quantity");
-
-const summaryQuantity =
-  document.getElementById("summaryQuantity");
-
-const form =
-  document.getElementById("orderForm");
+const form = document.getElementById("orderForm");
+const hiddenDescription =
+  document.getElementById("hiddenDescription");
 
 const submitButton =
   document.getElementById("submitButton");
 
-const stickerCustomization =
-  document.getElementById("stickerCustomization");
-
-const successModal =
-  document.getElementById("successModal");
+const success =
+  document.getElementById("success");
 
 
-/* =========================
-   SCROLL TO ORDER
-========================= */
+/* SCROLL TO ORDER */
 
-function scrollToOrder() {
-
-  document
-    .getElementById("order")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
+function goToOrder() {
+  document.getElementById("order").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 
 
-/* =========================
-   CHARACTER COUNTER
-========================= */
+/* CHARACTER COUNTER */
 
-stickerDescription.addEventListener(
-  "input",
-  function () {
+description.addEventListener("input", function () {
 
-    const length =
-      stickerDescription.value.length;
+  count.textContent = description.value.length;
 
-    characterCount.textContent = length;
-
-    updateSummary();
-
-  }
-);
+});
 
 
-/* =========================
-   QUANTITY UPDATE
-========================= */
+/* FORM SUBMISSION */
 
-quantity.addEventListener(
-  "change",
-  function () {
+form.addEventListener("submit", async function (event) {
 
-    updateSummary();
+  event.preventDefault();
 
-  }
-);
+  hiddenDescription.value =
+    description.value.trim() ||
+    "No custom sticker description provided.";
 
 
-/* =========================
-   UPDATE SUMMARY
-========================= */
+  submitButton.disabled = true;
 
-function updateSummary() {
-
-  const description =
-    stickerDescription.value.trim();
-
-  const selectedQuantity =
-    quantity.value;
+  submitButton.textContent =
+    "Submitting Order...";
 
 
-  if (description) {
+  try {
 
-    summaryDescription.textContent =
-      description;
-
-  } else {
-
-    summaryDescription.textContent =
-      "Not entered";
-
-  }
-
-
-  if (selectedQuantity) {
-
-    const number =
-      parseInt(selectedQuantity);
-
-    summaryQuantity.textContent =
-      number +
-      (number === 1 ? " Sticker" : " Stickers");
-
-  } else {
-
-    summaryQuantity.textContent =
-      "Not selected";
-
-  }
-
-}
-
-
-/* =========================
-   FORM SUBMISSION
-========================= */
-
-form.addEventListener(
-  "submit",
-  async function (event) {
-
-    event.preventDefault();
-
-
-    const description =
-      stickerDescription.value.trim();
-
-
-    /*
-      Sticker customization is optional.
-      If the student doesn't enter anything,
-      the order can still be submitted.
-    */
-
-    if (description === "") {
-
-      stickerCustomization.value =
-        "No custom sticker description provided.";
-
-    } else {
-
-      stickerCustomization.value =
-        description;
-
-    }
-
-
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-      "Submitting Order...";
-
-
-    try {
-
-      const response =
-        await fetch(
-          form.action,
-          {
-            method: "POST",
-
-            body: new FormData(form),
-
-            headers: {
-              "Accept": "application/json"
-            }
-          }
-        );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          "Form submission failed"
-        );
-
+    const response = await fetch(
+      form.action,
+      {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          "Accept": "application/json"
+        }
       }
+    );
 
 
-      /*
-        Show success message
-      */
-
-      successModal.classList.add("show");
-
-
-      /*
-        Reset form
-      */
-
-      form.reset();
-
-      stickerDescription.value = "";
-
-      characterCount.textContent = "0";
-
-      updateSummary();
-
-
-    } catch (error) {
-
-      console.error(error);
-
-      showToast(
-        "Something went wrong. Please try again."
-      );
-
-    } finally {
-
-      submitButton.disabled = false;
-
-      submitButton.textContent =
-        "🛍️ Place Order";
-
+    if (!response.ok) {
+      throw new Error("Submission failed");
     }
 
+
+    form.reset();
+
+    description.value = "";
+
+    count.textContent = "0";
+
+    success.classList.add("show");
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Unable to submit the order. Please try again."
+    );
+
   }
-);
 
 
-/* =========================
-   CLOSE SUCCESS MODAL
-========================= */
+  submitButton.disabled = false;
+
+  submitButton.textContent =
+    "🛍️ Place Order";
+
+});
+
+
+/* CLOSE SUCCESS */
 
 function closeSuccess() {
 
-  successModal.classList.remove("show");
+  success.classList.remove("show");
 
 }
 
 
-/* =========================
-   CLICK OUTSIDE MODAL
-========================= */
+/* CLOSE WHEN CLICKING OUTSIDE */
 
-successModal.addEventListener(
-  "click",
-  function (event) {
+success.addEventListener("click", function (event) {
 
-    if (event.target === successModal) {
-
-      closeSuccess();
-
-    }
-
+  if (event.target === success) {
+    closeSuccess();
   }
-);
 
-
-/* =========================
-   TOAST
-========================= */
-
-function showToast(message) {
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-
-  setTimeout(
-    function () {
-
-      toast.classList.remove("show");
-
-    },
-    3000
-  );
-
-}
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-updateSummary();
+});
