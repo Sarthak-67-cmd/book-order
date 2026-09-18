@@ -9,49 +9,69 @@
 
 <body>
 
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">📚 Book Stickers</div>
-    <button type="button" onclick="goToOrder()">📝 Order</button>
+
+    <button type="button" onclick="goToOrder()">
+      📝 Order Now
+    </button>
   </nav>
 
+
+  <!-- HERO -->
   <header class="hero">
-    <div>
+
+    <div class="hero-content">
+
       <div class="hero-icon">📚✨</div>
 
       <h1>Customize Your Book Sticker</h1>
 
       <p>
-        Describe the sticker you want in your own words.
+        Tell us what you want your sticker to look like.
+        No image is required.
       </p>
 
-      <button type="button" class="hero-button" onclick="goToOrder()">
+      <button
+        type="button"
+        class="hero-button"
+        onclick="goToOrder()"
+      >
         Customize My Sticker
       </button>
+
     </div>
+
   </header>
 
+
+  <!-- ORDER -->
   <section class="order-section" id="order">
 
     <div class="container">
 
-      <h2>🎨 Custom Sticker Order</h2>
+      <h2>🎨 Create Your Sticker</h2>
 
       <p class="subtitle">
-        No image is needed. Just tell us what you want!
+        Describe your sticker using words.
       </p>
 
+
+      <!-- CUSTOMIZATION -->
       <div class="custom-card">
 
         <h3>What sticker do you want?</h3>
 
         <p class="example">
-          Example: A blue football with my name "Sarthak" written on it.
+          Example: "A blue football with my name Sarthak written in white."
         </p>
 
         <textarea
           id="description"
+          name="sticker_description"
           maxlength="500"
-          placeholder="Describe your sticker here..."
+          placeholder="Describe your custom sticker..."
         ></textarea>
 
         <div class="counter">
@@ -61,48 +81,53 @@
       </div>
 
 
+      <!-- FORM -->
       <div class="form-card">
 
         <h3>👤 Student Details</h3>
 
         <form
-          id="orderForm"
           action="https://formspree.io/f/xvkggoaj"
           method="POST"
         >
 
+          <!-- CUSTOM STICKER DESCRIPTION -->
           <input
             type="hidden"
             name="sticker_customization"
             id="hiddenDescription"
           >
 
-          <input
-            type="hidden"
-            name="payment_method"
-            value="Cash"
-          >
-
+          <!-- ORDER TYPE -->
           <input
             type="hidden"
             name="order_type"
             value="Custom Book Sticker"
           >
 
+          <!-- PAYMENT -->
+          <input
+            type="hidden"
+            name="payment_method"
+            value="Cash"
+          >
 
-          <label for="name">
+
+          <!-- NAME -->
+          <label for="studentName">
             Student Name *
           </label>
 
           <input
-            id="name"
             type="text"
+            id="studentName"
             name="student_name"
             placeholder="Enter your name"
             required
           >
 
 
+          <!-- CLASS -->
           <label for="class">
             Class *
           </label>
@@ -112,7 +137,11 @@
             name="class"
             required
           >
-            <option value="">Select Class</option>
+
+            <option value="">
+              Select Class
+            </option>
+
             <option>Class 1</option>
             <option>Class 2</option>
             <option>Class 3</option>
@@ -123,47 +152,52 @@
             <option>Class 8</option>
             <option>Class 9</option>
             <option>Class 10</option>
+
           </select>
 
 
+          <!-- SECTION -->
           <label for="section">
             Section *
           </label>
 
           <input
-            id="section"
             type="text"
+            id="section"
             name="section"
             placeholder="Example: A"
             required
           >
 
 
+          <!-- PHONE -->
           <label for="phone">
-            Phone *
+            Phone Number *
           </label>
 
           <input
-            id="phone"
             type="tel"
+            id="phone"
             name="phone"
             placeholder="Enter phone number"
             required
           >
 
 
+          <!-- EMAIL -->
           <label for="email">
             Email <span>(Optional)</span>
           </label>
 
           <input
-            id="email"
             type="email"
+            id="email"
             name="email"
             placeholder="Enter email"
           >
 
 
+          <!-- QUANTITY -->
           <label for="quantity">
             Number of Stickers *
           </label>
@@ -173,16 +207,39 @@
             name="quantity"
             required
           >
-            <option value="">Select quantity</option>
-            <option value="1">1 Sticker</option>
-            <option value="2">2 Stickers</option>
-            <option value="3">3 Stickers</option>
-            <option value="4">4 Stickers</option>
-            <option value="5">5 Stickers</option>
-            <option value="10">10 Stickers</option>
+
+            <option value="">
+              Select quantity
+            </option>
+
+            <option value="1">
+              1 Sticker
+            </option>
+
+            <option value="2">
+              2 Stickers
+            </option>
+
+            <option value="3">
+              3 Stickers
+            </option>
+
+            <option value="4">
+              4 Stickers
+            </option>
+
+            <option value="5">
+              5 Stickers
+            </option>
+
+            <option value="10">
+              10 Stickers
+            </option>
+
           </select>
 
 
+          <!-- NOTES -->
           <label for="notes">
             Additional Notes <span>(Optional)</span>
           </label>
@@ -190,23 +247,36 @@
           <textarea
             id="notes"
             name="notes"
-            placeholder="Anything else?"
+            placeholder="Anything else you want us to know?"
           ></textarea>
 
 
+          <!-- CASH -->
           <div class="cash-box">
-            💵 <strong>Payment: Cash</strong>
 
-            <p>
-              Pay in cash when you receive your stickers.
-            </p>
+            <div class="cash-icon">
+              💵
+            </div>
+
+            <div>
+
+              <strong>
+                Payment: Cash
+              </strong>
+
+              <p>
+                Pay in cash when you receive your stickers.
+              </p>
+
+            </div>
+
           </div>
 
 
+          <!-- SUBMIT -->
           <button
-            class="submit-button"
             type="submit"
-            id="submitButton"
+            class="submit-button"
           >
             🛍️ Place Order
           </button>
@@ -220,36 +290,13 @@
   </section>
 
 
-  <div
-    id="success"
-    class="success"
-  >
-
-    <div class="success-box">
-
-      <div class="success-icon">✅</div>
-
-      <h2>Order Placed!</h2>
-
-      <p>
-        Your custom sticker order was submitted successfully.
-      </p>
-
-      <p>
-        Payment will be made in cash.
-      </p>
-
-      <button type="button" onclick="closeSuccess()">
-        Done
-      </button>
-
-    </div>
-
-  </div>
-
-
+  <!-- FOOTER -->
   <footer>
-    📚 Book Stickers • Customize Your Books ✨
+
+    <p>
+      📚 Book Stickers • Customize Your Books ✨
+    </p>
+
   </footer>
 
 
