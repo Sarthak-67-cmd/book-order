@@ -21,7 +21,6 @@ body {
 
 .navbar {
   height: 70px;
-
   background: #171717;
   color: white;
 
@@ -39,21 +38,21 @@ body {
 
 .navbar button {
   border: none;
-
   background: #ffca28;
   color: #171717;
 
   padding: 11px 20px;
-
   border-radius: 25px;
 
   font-weight: bold;
-
   cursor: pointer;
+
+  transition: 0.2s;
 }
 
 .navbar button:hover {
   background: #ffd95a;
+  transform: translateY(-1px);
 }
 
 
@@ -72,12 +71,13 @@ body {
 
   padding: 60px 20px;
 
-  background: linear-gradient(
-    135deg,
-    #ffe082,
-    #ffcc80,
-    #ce93d8
-  );
+  background:
+    linear-gradient(
+      135deg,
+      #ffe082,
+      #ffcc80,
+      #ce93d8
+    );
 }
 
 .hero-content {
@@ -92,15 +92,12 @@ body {
 .hero h1 {
   font-size: 48px;
   line-height: 1.15;
-
   margin-bottom: 20px;
 }
 
 .hero p {
   font-size: 19px;
-
   color: #444;
-
   margin-bottom: 30px;
 }
 
@@ -118,10 +115,13 @@ body {
   font-weight: bold;
 
   cursor: pointer;
+
+  transition: 0.2s;
 }
 
 .hero-button:hover {
   background: #333;
+  transform: translateY(-2px);
 }
 
 
@@ -131,32 +131,26 @@ body {
 
 .order-section {
   background: #171717;
-
   padding: 70px 20px;
 }
 
 .container {
   width: 100%;
   max-width: 750px;
-
   margin: auto;
 }
 
 .container > h2 {
   color: white;
-
   text-align: center;
 
   font-size: 36px;
-
   margin-bottom: 10px;
 }
 
 .subtitle {
   color: #ccc;
-
   text-align: center;
-
   margin-bottom: 35px;
 }
 
@@ -169,15 +163,15 @@ body {
   background: white;
 
   padding: 28px;
-
   border-radius: 18px;
 
   margin-bottom: 25px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .custom-card h3 {
   font-size: 22px;
-
   margin-bottom: 8px;
 }
 
@@ -185,7 +179,6 @@ body {
   color: #777;
 
   font-size: 14px;
-
   line-height: 1.5;
 
   margin-bottom: 15px;
@@ -193,26 +186,25 @@ body {
 
 .custom-card textarea {
   width: 100%;
-
   min-height: 160px;
 
   padding: 15px;
 
   border: 2px solid #ddd;
-
   border-radius: 12px;
 
   font-family: Arial, sans-serif;
-
   font-size: 16px;
 
   resize: vertical;
-
   outline: none;
+
+  transition: 0.2s;
 }
 
 .custom-card textarea:focus {
   border-color: #9c27b0;
+  box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
 }
 
 .counter {
@@ -234,13 +226,13 @@ body {
   background: white;
 
   padding: 30px;
-
   border-radius: 18px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .form-card > h3 {
   font-size: 22px;
-
   margin-bottom: 20px;
 }
 
@@ -260,7 +252,6 @@ form label {
 
 form label span {
   color: #777;
-
   font-weight: normal;
 }
 
@@ -272,27 +263,27 @@ form textarea {
   padding: 13px;
 
   border: 1px solid #ccc;
-
   border-radius: 9px;
 
   font-family: Arial, sans-serif;
-
   font-size: 15px;
 
   background: white;
 
   outline: none;
+
+  transition: 0.2s;
 }
 
 form input:focus,
 form select:focus,
 form textarea:focus {
   border-color: #777;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 form textarea {
   min-height: 100px;
-
   resize: vertical;
 }
 
@@ -303,7 +294,6 @@ form textarea {
 
 .cash-box {
   display: flex;
-
   align-items: center;
 
   gap: 15px;
@@ -323,13 +313,11 @@ form textarea {
 
 .cash-box strong {
   display: block;
-
   margin-bottom: 4px;
 }
 
 .cash-box p {
   color: #555;
-
   font-size: 14px;
 }
 
@@ -344,7 +332,6 @@ form textarea {
   border: none;
 
   background: #2e7d32;
-
   color: white;
 
   padding: 16px;
@@ -354,14 +341,21 @@ form textarea {
   border-radius: 10px;
 
   font-size: 17px;
-
   font-weight: bold;
 
   cursor: pointer;
+
+  transition: 0.2s;
 }
 
 .submit-button:hover {
   background: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 
@@ -392,6 +386,11 @@ footer {
 
   .logo {
     font-size: 18px;
+  }
+
+  .navbar button {
+    padding: 9px 14px;
+    font-size: 13px;
   }
 
   .hero {
