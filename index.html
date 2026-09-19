@@ -21,7 +21,6 @@
 
   <!-- HERO -->
   <header class="hero">
-
     <div class="hero-content">
 
       <div class="hero-icon">📚✨</div>
@@ -42,11 +41,10 @@
       </button>
 
     </div>
-
   </header>
 
 
-  <!-- ORDER -->
+  <!-- ORDER SECTION -->
   <section class="order-section" id="order">
 
     <div class="container">
@@ -72,6 +70,7 @@
           name="sticker_description"
           maxlength="500"
           placeholder="Describe your custom sticker..."
+          required
         ></textarea>
 
         <div class="counter">
@@ -87,6 +86,7 @@
         <h3>👤 Student Details</h3>
 
         <form
+          id="orderForm"
           action="https://formspree.io/f/xvkggoaj"
           method="POST"
         >
@@ -113,7 +113,7 @@
           >
 
 
-          <!-- NAME -->
+          <!-- STUDENT NAME -->
           <label for="studentName">
             Student Name *
           </label>
@@ -142,16 +142,16 @@
               Select Class
             </option>
 
-            <option>Class 1</option>
-            <option>Class 2</option>
-            <option>Class 3</option>
-            <option>Class 4</option>
-            <option>Class 5</option>
-            <option>Class 6</option>
-            <option>Class 7</option>
-            <option>Class 8</option>
-            <option>Class 9</option>
-            <option>Class 10</option>
+            <option value="Class 1">Class 1</option>
+            <option value="Class 2">Class 2</option>
+            <option value="Class 3">Class 3</option>
+            <option value="Class 4">Class 4</option>
+            <option value="Class 5">Class 5</option>
+            <option value="Class 6">Class 6</option>
+            <option value="Class 7">Class 7</option>
+            <option value="Class 8">Class 8</option>
+            <option value="Class 9">Class 9</option>
+            <option value="Class 10">Class 10</option>
 
           </select>
 
@@ -180,6 +180,7 @@
             id="phone"
             name="phone"
             placeholder="Enter phone number"
+            inputmode="numeric"
             required
           >
 
@@ -212,29 +213,12 @@
               Select quantity
             </option>
 
-            <option value="1">
-              1 Sticker
-            </option>
-
-            <option value="2">
-              2 Stickers
-            </option>
-
-            <option value="3">
-              3 Stickers
-            </option>
-
-            <option value="4">
-              4 Stickers
-            </option>
-
-            <option value="5">
-              5 Stickers
-            </option>
-
-            <option value="10">
-              10 Stickers
-            </option>
+            <option value="1">1 Sticker</option>
+            <option value="2">2 Stickers</option>
+            <option value="3">3 Stickers</option>
+            <option value="4">4 Stickers</option>
+            <option value="5">5 Stickers</option>
+            <option value="10">10 Stickers</option>
 
           </select>
 
@@ -259,15 +243,11 @@
             </div>
 
             <div>
-
-              <strong>
-                Payment: Cash
-              </strong>
+              <strong>Payment: Cash</strong>
 
               <p>
                 Pay in cash when you receive your stickers.
               </p>
-
             </div>
 
           </div>
@@ -277,6 +257,7 @@
           <button
             type="submit"
             class="submit-button"
+            id="submitButton"
           >
             🛍️ Place Order
           </button>
