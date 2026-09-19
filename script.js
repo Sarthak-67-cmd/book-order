@@ -1,11 +1,8 @@
-const description =
-  document.getElementById("description");
-
-const count =
-  document.getElementById("count");
-
-const hiddenDescription =
-  document.getElementById("hiddenDescription");
+const description = document.getElementById("description");
+const count = document.getElementById("count");
+const hiddenDescription = document.getElementById("hiddenDescription");
+const form = document.getElementById("orderForm");
+const submitButton = document.getElementById("submitButton");
 
 
 /* =========================
@@ -13,13 +10,13 @@ const hiddenDescription =
 ========================= */
 
 function goToOrder() {
+  document.getElementById("order").scrollIntoView({
+    behavior: "smooth"
+  });
 
-  document
-    .getElementById("order")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
+  setTimeout(() => {
+    description.focus();
+  }, 500);
 }
 
 
@@ -27,47 +24,45 @@ function goToOrder() {
    CHARACTER COUNTER
 ========================= */
 
-description.addEventListener(
-  "input",
-  function () {
+description.addEventListener("input", function () {
 
-    count.textContent =
-      description.value.length;
+  const text = description.value.trim();
 
-    hiddenDescription.value =
-      description.value.trim();
+  count.textContent = description.value.length;
 
-  }
-);
+  hiddenDescription.value = text;
+
+});
 
 
 /* =========================
-   BEFORE FORM SUBMISSION
+   FORM SUBMISSION
 ========================= */
 
-document
-  .querySelector("form")
-  .addEventListener(
-    "submit",
-    function () {
+form.addEventListener("submit", function (event) {
 
-      /*
-       * Custom sticker description is optional.
-       */
+  const stickerDescription = description.value.trim();
 
-      if (
-        description.value.trim() === ""
-      ) {
+  /* Make sure description exists */
+  if (stickerDescription === "") {
 
-        hiddenDescription.value =
-          "No custom sticker description provided.";
+    event.preventDefault();
 
-      } else {
+    alert("Please describe the sticker you want.");
 
-        hiddenDescription.value =
-          description.value.trim();
+    description.focus();
 
-      }
+    return;
+  }
 
-    }
-  );
+
+  /* Put description into Formspree field */
+  hiddenDescription.value = stickerDescription;
+
+
+  /* Prevent accidental double-click */
+  submitButton.disabled = true;
+
+  submitButton.textContent = "⏳ Sending Order...";
+
+});
