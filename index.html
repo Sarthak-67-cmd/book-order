@@ -1,60 +1,437 @@
-<!-- PAYMENT METHOD -->
-<label for="payment">
-  Payment Method *
-</label>
+<!DOCTYPE html>
+<html lang="en">
 
-<select
-  id="payment"
-  name="payment_method"
-  required
->
-  <option value="">
-    Select payment method
-  </option>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <option value="UPI">
-    UPI
-  </option>
+  <title>Studio Stick - Book Stickers</title>
 
-  <option value="Cash">
-    Cash
-  </option>
-</select>
+  <!-- CSS -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      📚 Studio Stick
+    </div>
+
+    <button
+      type="button"
+      onclick="goToOrder()"
+    >
+      📝 Order Now
+    </button>
+
+  </nav>
 
 
-<!-- UPI PAYMENT -->
-<div id="upiPayment" class="upi-box">
+  <!-- =========================
+       HERO
+  ========================== -->
 
-  <h3>📱 Pay with UPI</h3>
+  <header class="hero">
 
-  <p>
-    Scan the QR code below using any UPI app.
-  </p>
+    <div class="hero-content">
 
-  <img
-    src="upi-qr.png"
-    alt="UPI QR Code"
-    class="upi-qr"
+      <div class="hero-icon">
+        📚✨
+      </div>
+
+      <h1>
+        Customize Your Book Sticker
+      </h1>
+
+      <p>
+        Create your own sticker by describing what you want.
+        No image is required.
+      </p>
+
+      <button
+        type="button"
+        class="hero-button"
+        onclick="goToOrder()"
+      >
+        Customize My Sticker
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       ORDER SECTION
+  ========================== -->
+
+  <section
+    class="order-section"
+    id="order"
   >
 
-  <p class="upi-note">
-    After making the payment, click <strong>Place Order</strong>.
-  </p>
+    <div class="container">
 
-</div>
+      <h2>
+        🎨 Create Your Sticker
+      </h2>
+
+      <p class="subtitle">
+        Tell us what you want your sticker to look like.
+      </p>
 
 
-<!-- CASH INFORMATION -->
-<div id="cashPayment" class="cash-box">
+      <!-- =========================
+           ORDER FORM
+      ========================== -->
 
-  <div class="cash-icon">💵</div>
+      <div class="form-card">
 
-  <div>
-    <strong>Payment: Cash</strong>
+        <h3>
+          📝 Sticker Details
+        </h3>
+
+        <form
+          id="orderForm"
+          action="https://formspree.io/f/xvkggoaj"
+          method="POST"
+        >
+
+          <!-- ORDER TYPE -->
+
+          <input
+            type="hidden"
+            name="order_type"
+            value="Custom Book Sticker"
+          >
+
+
+          <!-- =========================
+               STICKER DESCRIPTION
+          ========================== -->
+
+          <label for="description">
+            What sticker do you want? *
+          </label>
+
+          <p class="example">
+            Example: "A blue football with my name Sarthak written in white."
+          </p>
+
+          <textarea
+            id="description"
+            name="sticker_description"
+            maxlength="500"
+            placeholder="Describe your custom sticker..."
+            required
+          ></textarea>
+
+          <div class="counter">
+            <span id="count">0</span>/500
+          </div>
+
+
+          <!-- =========================
+               STUDENT NAME
+          ========================== -->
+
+          <label for="studentName">
+            Student Name *
+          </label>
+
+          <input
+            type="text"
+            id="studentName"
+            name="student_name"
+            placeholder="Enter your name"
+            required
+          >
+
+
+          <!-- =========================
+               CLASS
+          ========================== -->
+
+          <label for="class">
+            Class *
+          </label>
+
+          <select
+            id="class"
+            name="class"
+            required
+          >
+
+            <option value="">
+              Select Class
+            </option>
+
+            <option value="Class 1">Class 1</option>
+            <option value="Class 2">Class 2</option>
+            <option value="Class 3">Class 3</option>
+            <option value="Class 4">Class 4</option>
+            <option value="Class 5">Class 5</option>
+            <option value="Class 6">Class 6</option>
+            <option value="Class 7">Class 7</option>
+            <option value="Class 8">Class 8</option>
+            <option value="Class 9">Class 9</option>
+            <option value="Class 10">Class 10</option>
+
+          </select>
+
+
+          <!-- =========================
+               SECTION
+          ========================== -->
+
+          <label for="section">
+            Section *
+          </label>
+
+          <input
+            type="text"
+            id="section"
+            name="section"
+            placeholder="Example: A"
+            required
+          >
+
+
+          <!-- =========================
+               PHONE
+          ========================== -->
+
+          <label for="phone">
+            Phone Number *
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Enter phone number"
+            inputmode="numeric"
+            required
+          >
+
+
+          <!-- =========================
+               EMAIL
+          ========================== -->
+
+          <label for="email">
+            Email <span>(Optional)</span>
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+          >
+
+
+          <!-- =========================
+               QUANTITY
+          ========================== -->
+
+          <label for="quantity">
+            Number of Stickers *
+          </label>
+
+          <select
+            id="quantity"
+            name="quantity"
+            required
+          >
+
+            <option value="">
+              Select quantity
+            </option>
+
+            <option value="1">1 Sticker</option>
+            <option value="2">2 Stickers</option>
+            <option value="3">3 Stickers</option>
+            <option value="4">4 Stickers</option>
+            <option value="5">5 Stickers</option>
+            <option value="10">10 Stickers</option>
+
+          </select>
+
+
+          <!-- =========================
+               ADDITIONAL NOTES
+          ========================== -->
+
+          <label for="notes">
+            Additional Notes <span>(Optional)</span>
+          </label>
+
+          <textarea
+            id="notes"
+            name="notes"
+            placeholder="Anything else you want us to know?"
+          ></textarea>
+
+
+          <!-- =========================
+               PAYMENT METHOD
+          ========================== -->
+
+          <label for="payment">
+            Payment Method *
+          </label>
+
+          <select
+            id="payment"
+            name="payment_method"
+            required
+          >
+
+            <option value="">
+              Select payment method
+            </option>
+
+            <option value="UPI">
+              UPI
+            </option>
+
+            <option value="Cash">
+              Cash
+            </option>
+
+          </select>
+
+
+          <!-- =========================
+               UPI PAYMENT
+          ========================== -->
+
+          <div
+            id="upiPayment"
+            class="upi-box"
+          >
+
+            <div class="payment-icon">
+              📱
+            </div>
+
+            <h3>
+              Pay with UPI
+            </h3>
+
+            <p>
+              Scan the QR code below using any UPI app.
+            </p>
+
+            <!--
+              Add your QR image later.
+              File name must be: upi-qr.png
+            -->
+
+            <div class="qr-placeholder">
+
+              <p>
+                📷 UPI QR Code
+              </p>
+
+              <small>
+                QR code will be added here.
+              </small>
+
+            </div>
+
+            <!--
+            When you add upi-qr.png,
+            replace the qr-placeholder above with:
+
+            <img
+              src="./upi-qr.png"
+              alt="UPI QR Code"
+              class="upi-qr"
+            >
+            -->
+
+            <p class="upi-note">
+              After making the payment, click
+              <strong>Place Order</strong>.
+            </p>
+
+          </div>
+
+
+          <!-- =========================
+               CASH PAYMENT
+          ========================== -->
+
+          <div
+            id="cashPayment"
+            class="cash-box"
+          >
+
+            <div class="cash-icon">
+              💵
+            </div>
+
+            <div>
+
+              <strong>
+                Payment: Cash
+              </strong>
+
+              <p>
+                Pay in cash when you receive your stickers.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               SUBMIT
+          ========================== -->
+
+          <button
+            type="submit"
+            class="submit-button"
+            id="submitButton"
+          >
+            🛍️ Place Order
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
 
     <p>
-      Pay in cash when you receive your stickers.
+      📚 Studio Stick • Customize Your Books ✨
     </p>
-  </div>
 
-</div>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
