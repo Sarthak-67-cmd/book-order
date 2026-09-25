@@ -9,16 +9,12 @@ payment.addEventListener("change", function () {
     upiPayment.style.display = "block";
     cashPayment.style.display = "none";
 
-  }
-
-  else if (payment.value === "Cash") {
+  } else if (payment.value === "Cash") {
 
     upiPayment.style.display = "none";
     cashPayment.style.display = "flex";
 
-  }
-
-  else {
+  } else {
 
     upiPayment.style.display = "none";
     cashPayment.style.display = "none";
