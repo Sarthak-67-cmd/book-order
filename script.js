@@ -1,19 +1,11 @@
-```javascript
-/* =========================
-   ELEMENTS
-========================= */
-
 const description =
   document.getElementById("description");
 
 const count =
   document.getElementById("count");
 
-const form =
-  document.getElementById("orderForm");
-
-const submitButton =
-  document.getElementById("submitButton");
+const hiddenDescription =
+  document.getElementById("hiddenDescription");
 
 const payment =
   document.getElementById("payment");
@@ -24,29 +16,11 @@ const upiPayment =
 const cashPayment =
   document.getElementById("cashPayment");
 
-const email =
-  document.getElementById("email");
+const form =
+  document.getElementById("orderForm");
 
-const sendOtpButton =
-  document.getElementById("sendOtpButton");
-
-const otpArea =
-  document.getElementById("otpArea");
-
-const otp =
-  document.getElementById("otp");
-
-const verifyOtpButton =
-  document.getElementById("verifyOtpButton");
-
-const otpMessage =
-  document.getElementById("otpMessage");
-
-const verifiedMessage =
-  document.getElementById("verifiedMessage");
-
-
-let emailVerified = false;
+const submitButton =
+  document.getElementById("submitButton");
 
 
 /* =========================
@@ -61,9 +35,6 @@ function goToOrder() {
       behavior: "smooth"
     });
 
-  setTimeout(function () {
-    description.focus();
-  }, 500);
 }
 
 
@@ -78,12 +49,15 @@ description.addEventListener(
     count.textContent =
       description.value.length;
 
+    hiddenDescription.value =
+      description.value.trim();
+
   }
 );
 
 
 /* =========================
-   PAYMENT METHOD
+   PAYMENT SELECTION
 ========================= */
 
 payment.addEventListener(
@@ -92,294 +66,31 @@ payment.addEventListener(
 
     if (payment.value === "UPI") {
 
-      upiPayment.style.display = "block";
+      upiPayment.style.display =
+        "block";
 
-      cashPayment.style.display = "none";
+      cashPayment.style.display =
+        "none";
 
     }
 
     else if (payment.value === "Cash") {
 
-      upiPayment.style.display = "none";
+      upiPayment.style.display =
+        "none";
 
-      cashPayment.style.display = "flex";
+      cashPayment.style.display =
+        "flex";
 
     }
 
     else {
 
-      upiPayment.style.display = "none";
-
-      cashPayment.style.display = "none";
-
-    }
-
-  }
-);
-
-
-/* =========================
-   RESET VERIFICATION
-   IF EMAIL CHANGES
-========================= */
-
-email.addEventListener(
-  "input",
-  function () {
-
-    emailVerified = false;
-
-    verifiedMessage.style.display = "none";
-
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-      "🔒 Verify Email First";
-
-    otpArea.style.display = "none";
-
-    otp.value = "";
-
-    otpMessage.textContent = "";
-
-  }
-);
-
-
-/* =========================
-   SEND OTP
-========================= */
-
-sendOtpButton.addEventListener(
-  "click",
-  async function () {
-
-    const emailAddress =
-      email.value.trim();
-
-    if (!emailAddress) {
-
-      alert("Please enter your email address first.");
-
-      email.focus();
-
-      return;
-    }
-
-
-    if (!email.checkValidity()) {
-
-      alert("Please enter a valid email address.");
-
-      email.focus();
-
-      return;
-    }
-
-
-    sendOtpButton.disabled = true;
-
-    sendOtpButton.textContent =
-      "⏳ Sending OTP...";
-
-    otpMessage.textContent = "";
-
-
-    try {
-
-      const response =
-        await fetch("/.netlify/functions/send-otp", {
-
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json"
-          },
-
-          body: JSON.stringify({
-            email: emailAddress
-          })
-
-        });
-
-
-      const data =
-        await response.json();
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          data.message ||
-          "Unable to send OTP."
-        );
-
-      }
-
-
-      otpArea.style.display = "block";
-
-      otpMessage.textContent =
-        "✅ OTP sent. Check your email.";
-
-      otpMessage.style.color =
-        "#2e7d32";
-
-      otp.focus();
-
-
-      sendOtpButton.textContent =
-        "📩 Send OTP Again";
-
-    }
-
-    catch (error) {
-
-      otpMessage.textContent =
-        error.message;
-
-      otpMessage.style.color =
-        "#c62828";
-
-      sendOtpButton.textContent =
-        "📩 Send OTP";
-
-    }
-
-    finally {
-
-      sendOtpButton.disabled = false;
-
-    }
-
-  }
-);
-
-
-/* =========================
-   VERIFY OTP
-========================= */
-
-verifyOtpButton.addEventListener(
-  "click",
-  async function () {
-
-    const emailAddress =
-      email.value.trim();
-
-    const code =
-      otp.value.trim();
-
-
-    if (!emailAddress) {
-
-      alert("Please enter your email first.");
-
-      return;
-    }
-
-
-    if (!/^\d{6}$/.test(code)) {
-
-      otpMessage.textContent =
-        "Please enter the 6-digit OTP.";
-
-      otpMessage.style.color =
-        "#c62828";
-
-      otp.focus();
-
-      return;
-    }
-
-
-    verifyOtpButton.disabled = true;
-
-    verifyOtpButton.textContent =
-      "⏳ Checking...";
-
-
-    try {
-
-      const response =
-        await fetch("/.netlify/functions/verify-otp", {
-
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json"
-          },
-
-          body: JSON.stringify({
-            email: emailAddress,
-            code: code
-          })
-
-        });
-
-
-      const data =
-        await response.json();
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          data.message ||
-          "Incorrect OTP."
-        );
-
-      }
-
-
-      emailVerified = true;
-
-
-      otpMessage.textContent =
-        "✅ OTP verified successfully.";
-
-      otpMessage.style.color =
-        "#2e7d32";
-
-
-      verifiedMessage.style.display =
-        "block";
-
-
-      submitButton.disabled =
-        false;
-
-      submitButton.textContent =
-        "🛍️ Place Order";
-
-
-      verifyOtpButton.textContent =
-        "✅ Verified";
-
-      verifyOtpButton.disabled =
-        true;
-
-      sendOtpButton.disabled =
-        true;
-
-
-    }
-
-    catch (error) {
-
-      emailVerified = false;
-
-      otpMessage.textContent =
-        error.message;
-
-      otpMessage.style.color =
-        "#c62828";
-
-      verifyOtpButton.disabled =
-        false;
-
-      verifyOtpButton.textContent =
-        "✅ Verify OTP";
+      upiPayment.style.display =
+        "none";
+
+      cashPayment.style.display =
+        "none";
 
     }
 
@@ -395,34 +106,34 @@ form.addEventListener(
   "submit",
   function (event) {
 
-    /*
-      Do not allow Formspree submission
-      until the email has been verified.
-    */
+    const stickerText =
+      description.value.trim();
 
-    if (!emailVerified) {
+
+    if (stickerText === "") {
 
       event.preventDefault();
 
       alert(
-        "Please verify your email with the OTP before placing your order."
+        "Please describe the sticker you want."
       );
+
+      description.focus();
 
       return;
 
     }
 
 
-    /*
-      Allow the normal Formspree submission.
-      Formspree will then handle the order.
-    */
+    hiddenDescription.value =
+      stickerText;
 
-    submitButton.disabled = true;
+
+    submitButton.disabled =
+      true;
 
     submitButton.textContent =
       "⏳ Sending Order...";
 
   }
 );
-```
