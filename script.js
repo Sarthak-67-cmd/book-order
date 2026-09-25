@@ -1,68 +1,28 @@
-const description = document.getElementById("description");
-const count = document.getElementById("count");
-const hiddenDescription = document.getElementById("hiddenDescription");
-const form = document.getElementById("orderForm");
-const submitButton = document.getElementById("submitButton");
+const payment = document.getElementById("payment");
+const upiPayment = document.getElementById("upiPayment");
+const cashPayment = document.getElementById("cashPayment");
 
+payment.addEventListener("change", function () {
 
-/* =========================
-   GO TO ORDER
-========================= */
+  if (payment.value === "UPI") {
 
-function goToOrder() {
-  document.getElementById("order").scrollIntoView({
-    behavior: "smooth"
-  });
+    upiPayment.style.display = "block";
+    cashPayment.style.display = "none";
 
-  setTimeout(() => {
-    description.focus();
-  }, 500);
-}
-
-
-/* =========================
-   CHARACTER COUNTER
-========================= */
-
-description.addEventListener("input", function () {
-
-  const text = description.value.trim();
-
-  count.textContent = description.value.length;
-
-  hiddenDescription.value = text;
-
-});
-
-
-/* =========================
-   FORM SUBMISSION
-========================= */
-
-form.addEventListener("submit", function (event) {
-
-  const stickerDescription = description.value.trim();
-
-  /* Make sure description exists */
-  if (stickerDescription === "") {
-
-    event.preventDefault();
-
-    alert("Please describe the sticker you want.");
-
-    description.focus();
-
-    return;
   }
 
+  else if (payment.value === "Cash") {
 
-  /* Put description into Formspree field */
-  hiddenDescription.value = stickerDescription;
+    upiPayment.style.display = "none";
+    cashPayment.style.display = "flex";
 
+  }
 
-  /* Prevent accidental double-click */
-  submitButton.disabled = true;
+  else {
 
-  submitButton.textContent = "⏳ Sending Order...";
+    upiPayment.style.display = "none";
+    cashPayment.style.display = "none";
+
+  }
 
 });
