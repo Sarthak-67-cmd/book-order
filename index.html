@@ -1,14 +1,12 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Studio Stick - Book Stickers</title>
+  <title>Book Sticker Orders</title>
 
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,13 +15,10 @@
   <nav class="navbar">
 
     <div class="logo">
-      📚 Studio Stick
+      📚 Book Stickers
     </div>
 
-    <button
-      type="button"
-      onclick="goToOrder()"
-    >
+    <button type="button" onclick="goToOrder()">
       📝 Order Now
     </button>
 
@@ -44,7 +39,7 @@
       </h1>
 
       <p>
-        Create your own sticker by describing what you want.
+        Tell us what you want your sticker to look like.
         No image is required.
       </p>
 
@@ -61,7 +56,7 @@
   </header>
 
 
-  <!-- ORDER -->
+  <!-- ORDER SECTION -->
   <section
     class="order-section"
     id="order"
@@ -74,16 +69,42 @@
       </h2>
 
       <p class="subtitle">
-        Tell us what you want your sticker to look like.
+        Describe your sticker using words.
       </p>
 
 
-      <!-- FORM CARD -->
+      <!-- STICKER DESCRIPTION -->
+      <div class="custom-card">
+
+        <h3>
+          What sticker do you want?
+        </h3>
+
+        <p class="example">
+          Example: "A blue football with my name Sarthak written in white."
+        </p>
+
+        <textarea
+          id="description"
+          maxlength="500"
+          placeholder="Describe your custom sticker..."
+          required
+        ></textarea>
+
+        <div class="counter">
+          <span id="count">0</span>/500
+        </div>
+
+      </div>
+
+
+      <!-- ORDER FORM -->
       <div class="form-card">
 
         <h3>
-          📝 Sticker Details
+          👤 Student Details
         </h3>
+
 
         <form
           id="orderForm"
@@ -91,6 +112,15 @@
           method="POST"
         >
 
+          <!-- CUSTOM STICKER DESCRIPTION -->
+          <input
+            type="hidden"
+            name="sticker_customization"
+            id="hiddenDescription"
+          >
+
+
+          <!-- ORDER TYPE -->
           <input
             type="hidden"
             name="order_type"
@@ -98,31 +128,7 @@
           >
 
 
-          <!-- STICKER DESCRIPTION -->
-
-          <label for="description">
-            What sticker do you want? *
-          </label>
-
-          <p class="example">
-            Example: "A blue football with my name Sarthak written in white."
-          </p>
-
-          <textarea
-            id="description"
-            name="sticker_description"
-            maxlength="500"
-            placeholder="Describe your custom sticker..."
-            required
-          ></textarea>
-
-          <div class="counter">
-            <span id="count">0</span>/500
-          </div>
-
-
           <!-- STUDENT NAME -->
-
           <label for="studentName">
             Student Name *
           </label>
@@ -137,7 +143,6 @@
 
 
           <!-- CLASS -->
-
           <label for="class">
             Class *
           </label>
@@ -152,22 +157,50 @@
               Select Class
             </option>
 
-            <option value="Class 1">Class 1</option>
-            <option value="Class 2">Class 2</option>
-            <option value="Class 3">Class 3</option>
-            <option value="Class 4">Class 4</option>
-            <option value="Class 5">Class 5</option>
-            <option value="Class 6">Class 6</option>
-            <option value="Class 7">Class 7</option>
-            <option value="Class 8">Class 8</option>
-            <option value="Class 9">Class 9</option>
-            <option value="Class 10">Class 10</option>
+            <option value="Class 1">
+              Class 1
+            </option>
+
+            <option value="Class 2">
+              Class 2
+            </option>
+
+            <option value="Class 3">
+              Class 3
+            </option>
+
+            <option value="Class 4">
+              Class 4
+            </option>
+
+            <option value="Class 5">
+              Class 5
+            </option>
+
+            <option value="Class 6">
+              Class 6
+            </option>
+
+            <option value="Class 7">
+              Class 7
+            </option>
+
+            <option value="Class 8">
+              Class 8
+            </option>
+
+            <option value="Class 9">
+              Class 9
+            </option>
+
+            <option value="Class 10">
+              Class 10
+            </option>
 
           </select>
 
 
           <!-- SECTION -->
-
           <label for="section">
             Section *
           </label>
@@ -177,12 +210,12 @@
             id="section"
             name="section"
             placeholder="Example: A"
+            maxlength="10"
             required
           >
 
 
           <!-- PHONE -->
-
           <label for="phone">
             Phone Number *
           </label>
@@ -198,22 +231,20 @@
 
 
           <!-- EMAIL -->
-
           <label for="email">
-            Email *
+            Email
+            <span>(Optional)</span>
           </label>
 
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="Enter your email"
-            required
+            placeholder="Enter email"
           >
 
 
           <!-- QUANTITY -->
-
           <label for="quantity">
             Number of Stickers *
           </label>
@@ -228,31 +259,34 @@
               Select quantity
             </option>
 
-            <option value="1">1 Sticker</option>
-            <option value="2">2 Stickers</option>
-            <option value="3">3 Stickers</option>
-            <option value="4">4 Stickers</option>
-            <option value="5">5 Stickers</option>
-            <option value="10">10 Stickers</option>
+            <option value="1">
+              1 Sticker
+            </option>
+
+            <option value="2">
+              2 Stickers
+            </option>
+
+            <option value="3">
+              3 Stickers
+            </option>
+
+            <option value="4">
+              4 Stickers
+            </option>
+
+            <option value="5">
+              5 Stickers
+            </option>
+
+            <option value="10">
+              10 Stickers
+            </option>
 
           </select>
 
 
-          <!-- NOTES -->
-
-          <label for="notes">
-            Additional Notes <span>(Optional)</span>
-          </label>
-
-          <textarea
-            id="notes"
-            name="notes"
-            placeholder="Anything else you want us to know?"
-          ></textarea>
-
-
-          <!-- PAYMENT -->
-
+          <!-- PAYMENT METHOD -->
           <label for="payment">
             Payment Method *
           </label>
@@ -268,56 +302,45 @@
             </option>
 
             <option value="UPI">
-              UPI
+              📱 UPI
             </option>
 
             <option value="Cash">
-              Cash
+              💵 Cash
             </option>
 
           </select>
 
 
-          <!-- UPI -->
-
+          <!-- UPI QR -->
           <div
             id="upiPayment"
             class="upi-box"
           >
 
-            <div class="payment-icon">
-              📱
-            </div>
-
             <h3>
-              Pay with UPI
+              📱 Pay using UPI
             </h3>
 
             <p>
-              Scan the QR code using any UPI app.
+              Scan the QR code below to pay.
             </p>
 
-            <div class="qr-placeholder">
-
-              <p>
-                📷 UPI QR Code
-              </p>
-
-              <small>
-                QR code will be added later.
-              </small>
-
-            </div>
+            <img
+              src="upi-qr.png"
+              alt="UPI QR Code"
+              class="upi-qr"
+            >
 
             <p class="upi-note">
-              After making the payment, continue with verification.
+              After making the payment, click
+              <strong>Place Order</strong>.
             </p>
 
           </div>
 
 
-          <!-- CASH -->
-
+          <!-- CASH INFORMATION -->
           <div
             id="cashPayment"
             class="cash-box"
@@ -330,7 +353,7 @@
             <div>
 
               <strong>
-                Payment: Cash
+                Pay by Cash
               </strong>
 
               <p>
@@ -342,86 +365,26 @@
           </div>
 
 
-          <!-- OTP AREA -->
+          <!-- ADDITIONAL NOTES -->
+          <label for="notes">
+            Additional Notes
+            <span>(Optional)</span>
+          </label>
 
-          <div
-            id="verificationBox"
-            class="verification-box"
-          >
-
-            <h3>
-              ✉️ Verify Your Email
-            </h3>
-
-            <p>
-              We'll send a 6-digit verification code to your email.
-            </p>
-
-            <button
-              type="button"
-              id="sendOtpButton"
-              class="secondary-button"
-            >
-              📩 Send OTP
-            </button>
+          <textarea
+            id="notes"
+            name="notes"
+            placeholder="Anything else you want us to know?"
+          ></textarea>
 
 
-            <div
-              id="otpArea"
-              class="otp-area"
-            >
-
-              <label for="otp">
-                Enter OTP
-              </label>
-
-              <input
-                type="text"
-                id="otp"
-                name="otp"
-                inputmode="numeric"
-                autocomplete="one-time-code"
-                maxlength="6"
-                placeholder="6-digit code"
-              >
-
-              <button
-                type="button"
-                id="verifyOtpButton"
-                class="verify-button"
-              >
-                ✅ Verify OTP
-              </button>
-
-              <p
-                id="otpMessage"
-                class="otp-message"
-              ></p>
-
-            </div>
-
-          </div>
-
-
-          <!-- VERIFIED STATUS -->
-
-          <div
-            id="verifiedMessage"
-            class="verified-message"
-          >
-            ✅ Email verified. You can place your order.
-          </div>
-
-
-          <!-- PLACE ORDER -->
-
+          <!-- SUBMIT -->
           <button
             type="submit"
             class="submit-button"
             id="submitButton"
-            disabled
           >
-            🔒 Verify Email First
+            🛍️ Place Order
           </button>
 
         </form>
@@ -434,19 +397,16 @@
 
 
   <!-- FOOTER -->
-
   <footer>
 
     <p>
-      📚 Studio Stick • Customize Your Books ✨
+      📚 Book Stickers • Customize Your Books ✨
     </p>
 
   </footer>
 
 
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 
 </body>
-
 </html>
-```
