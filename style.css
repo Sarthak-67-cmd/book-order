@@ -1,48 +1,405 @@
-/* PAYMENT METHOD */
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff8ed;
+  color: #222;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  min-height: 70px;
+
+  background: #171717;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 7%;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.navbar button {
+  border: none;
+
+  background: #ffca28;
+  color: #171717;
+
+  padding: 11px 20px;
+
+  border-radius: 25px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.navbar button:hover {
+  background: #ffd95a;
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 60px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe082,
+      #ffcc80,
+      #ce93d8
+    );
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-icon {
+  font-size: 75px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  line-height: 1.15;
+
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 19px;
+
+  color: #444;
+
+  margin-bottom: 30px;
+
+  line-height: 1.5;
+}
+
+.hero-button {
+  border: none;
+
+  background: #171717;
+  color: white;
+
+  padding: 15px 28px;
+
+  border-radius: 30px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.hero-button:hover {
+  background: #333;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   ORDER SECTION
+========================= */
+
+.order-section {
+  background: #171717;
+
+  padding: 70px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 750px;
+
+  margin: auto;
+}
+
+.container > h2 {
+  color: white;
+
+  text-align: center;
+
+  font-size: 36px;
+
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #ccc;
+
+  text-align: center;
+
+  margin-bottom: 35px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.form-card > h3 {
+  font-size: 24px;
+
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+form label {
+  display: block;
+
+  font-weight: bold;
+
+  margin-top: 18px;
+  margin-bottom: 7px;
+}
+
+form label span {
+  color: #777;
+
+  font-weight: normal;
+}
+
+.example {
+  color: #777;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  margin-bottom: 10px;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 9px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 15px;
+
+  background: white;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #9c27b0;
+
+  box-shadow:
+    0 0 0 3px rgba(156, 39, 176, 0.1);
+}
+
+form textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+
+/* =========================
+   CHARACTER COUNTER
+========================= */
+
+.counter {
+  text-align: right;
+
+  color: #777;
+
+  font-size: 13px;
+
+  margin-top: 5px;
+}
+
+
+/* =========================
+   PAYMENT - UPI
+========================= */
 
 .upi-box {
   display: none;
 
-  margin-top: 20px;
-  padding: 22px;
+  margin-top: 25px;
+
+  padding: 25px;
 
   background: #f1f8e9;
+
   border: 2px solid #8bc34a;
+
   border-radius: 15px;
 
   text-align: center;
 }
 
+.payment-icon {
+  font-size: 38px;
+
+  margin-bottom: 8px;
+}
+
 .upi-box h3 {
+  font-size: 22px;
+
   margin-bottom: 8px;
 }
 
 .upi-box p {
   color: #555;
+
+  line-height: 1.5;
+
   margin-bottom: 12px;
 }
+
+
+/* =========================
+   QR PLACEHOLDER
+========================= */
+
+.qr-placeholder {
+  width: 230px;
+  min-height: 180px;
+
+  margin: 18px auto;
+
+  padding: 30px 15px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: white;
+
+  border: 2px dashed #8bc34a;
+
+  border-radius: 12px;
+}
+
+.qr-placeholder p {
+  font-size: 18px;
+
+  font-weight: bold;
+
+  color: #333;
+
+  margin-bottom: 5px;
+}
+
+.qr-placeholder small {
+  color: #777;
+}
+
+
+/* =========================
+   REAL QR IMAGE
+========================= */
 
 .upi-qr {
   width: 230px;
   max-width: 100%;
 
   display: block;
-  margin: 15px auto;
+
+  margin: 18px auto;
 
   border-radius: 8px;
 }
 
+
+/* =========================
+   UPI NOTE
+========================= */
+
 .upi-note {
   font-size: 14px;
+
+  margin-top: 10px;
 }
 
 
-/* CASH */
+/* =========================
+   CASH
+========================= */
 
 .cash-box {
   display: none;
 
   align-items: center;
+
   gap: 15px;
 
   background: #fff3cd;
@@ -51,7 +408,7 @@
 
   border-radius: 12px;
 
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .cash-icon {
@@ -60,10 +417,131 @@
 
 .cash-box strong {
   display: block;
+
   margin-bottom: 4px;
 }
 
 .cash-box p {
   color: #555;
+
   font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
+.submit-button {
+  width: 100%;
+
+  border: none;
+
+  background: #2e7d32;
+
+  color: white;
+
+  padding: 16px;
+
+  margin-top: 25px;
+
+  border-radius: 10px;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.submit-button:hover {
+  background: #1b5e20;
+
+  transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #0d0d0d;
+
+  color: white;
+
+  text-align: center;
+
+  padding: 25px;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 12px 5%;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .navbar button {
+    padding: 9px 14px;
+
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 450px;
+
+    padding: 50px 20px;
+  }
+
+  .hero-icon {
+    font-size: 55px;
+  }
+
+  .hero h1 {
+    font-size: 33px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .order-section {
+    padding: 50px 15px;
+  }
+
+  .container > h2 {
+    font-size: 29px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .qr-placeholder {
+    width: 200px;
+  }
+
 }
