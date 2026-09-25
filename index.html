@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,16 +8,12 @@
 
   <title>Studio Stick - Book Stickers</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-  <!-- =========================
-       NAVBAR
-  ========================== -->
-
+  <!-- NAVBAR -->
   <nav class="navbar">
 
     <div class="logo">
@@ -33,10 +30,7 @@
   </nav>
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
-
+  <!-- HERO -->
   <header class="hero">
 
     <div class="hero-content">
@@ -67,10 +61,7 @@
   </header>
 
 
-  <!-- =========================
-       ORDER SECTION
-  ========================== -->
-
+  <!-- ORDER -->
   <section
     class="order-section"
     id="order"
@@ -87,10 +78,7 @@
       </p>
 
 
-      <!-- =========================
-           ORDER FORM
-      ========================== -->
-
+      <!-- FORM CARD -->
       <div class="form-card">
 
         <h3>
@@ -103,8 +91,6 @@
           method="POST"
         >
 
-          <!-- ORDER TYPE -->
-
           <input
             type="hidden"
             name="order_type"
@@ -112,9 +98,7 @@
           >
 
 
-          <!-- =========================
-               STICKER DESCRIPTION
-          ========================== -->
+          <!-- STICKER DESCRIPTION -->
 
           <label for="description">
             What sticker do you want? *
@@ -137,9 +121,7 @@
           </div>
 
 
-          <!-- =========================
-               STUDENT NAME
-          ========================== -->
+          <!-- STUDENT NAME -->
 
           <label for="studentName">
             Student Name *
@@ -154,9 +136,7 @@
           >
 
 
-          <!-- =========================
-               CLASS
-          ========================== -->
+          <!-- CLASS -->
 
           <label for="class">
             Class *
@@ -186,9 +166,7 @@
           </select>
 
 
-          <!-- =========================
-               SECTION
-          ========================== -->
+          <!-- SECTION -->
 
           <label for="section">
             Section *
@@ -203,9 +181,7 @@
           >
 
 
-          <!-- =========================
-               PHONE
-          ========================== -->
+          <!-- PHONE -->
 
           <label for="phone">
             Phone Number *
@@ -221,25 +197,22 @@
           >
 
 
-          <!-- =========================
-               EMAIL
-          ========================== -->
+          <!-- EMAIL -->
 
           <label for="email">
-            Email <span>(Optional)</span>
+            Email *
           </label>
 
           <input
             type="email"
             id="email"
             name="email"
-            placeholder="Enter email"
+            placeholder="Enter your email"
+            required
           >
 
 
-          <!-- =========================
-               QUANTITY
-          ========================== -->
+          <!-- QUANTITY -->
 
           <label for="quantity">
             Number of Stickers *
@@ -265,9 +238,7 @@
           </select>
 
 
-          <!-- =========================
-               ADDITIONAL NOTES
-          ========================== -->
+          <!-- NOTES -->
 
           <label for="notes">
             Additional Notes <span>(Optional)</span>
@@ -280,9 +251,7 @@
           ></textarea>
 
 
-          <!-- =========================
-               PAYMENT METHOD
-          ========================== -->
+          <!-- PAYMENT -->
 
           <label for="payment">
             Payment Method *
@@ -309,9 +278,7 @@
           </select>
 
 
-          <!-- =========================
-               UPI PAYMENT
-          ========================== -->
+          <!-- UPI -->
 
           <div
             id="upiPayment"
@@ -327,13 +294,8 @@
             </h3>
 
             <p>
-              Scan the QR code below using any UPI app.
+              Scan the QR code using any UPI app.
             </p>
-
-            <!--
-              Add your QR image later.
-              File name must be: upi-qr.png
-            -->
 
             <div class="qr-placeholder">
 
@@ -342,33 +304,19 @@
               </p>
 
               <small>
-                QR code will be added here.
+                QR code will be added later.
               </small>
 
             </div>
 
-            <!--
-            When you add upi-qr.png,
-            replace the qr-placeholder above with:
-
-            <img
-              src="./upi-qr.png"
-              alt="UPI QR Code"
-              class="upi-qr"
-            >
-            -->
-
             <p class="upi-note">
-              After making the payment, click
-              <strong>Place Order</strong>.
+              After making the payment, continue with verification.
             </p>
 
           </div>
 
 
-          <!-- =========================
-               CASH PAYMENT
-          ========================== -->
+          <!-- CASH -->
 
           <div
             id="cashPayment"
@@ -394,16 +342,86 @@
           </div>
 
 
-          <!-- =========================
-               SUBMIT
-          ========================== -->
+          <!-- OTP AREA -->
+
+          <div
+            id="verificationBox"
+            class="verification-box"
+          >
+
+            <h3>
+              ✉️ Verify Your Email
+            </h3>
+
+            <p>
+              We'll send a 6-digit verification code to your email.
+            </p>
+
+            <button
+              type="button"
+              id="sendOtpButton"
+              class="secondary-button"
+            >
+              📩 Send OTP
+            </button>
+
+
+            <div
+              id="otpArea"
+              class="otp-area"
+            >
+
+              <label for="otp">
+                Enter OTP
+              </label>
+
+              <input
+                type="text"
+                id="otp"
+                name="otp"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="6"
+                placeholder="6-digit code"
+              >
+
+              <button
+                type="button"
+                id="verifyOtpButton"
+                class="verify-button"
+              >
+                ✅ Verify OTP
+              </button>
+
+              <p
+                id="otpMessage"
+                class="otp-message"
+              ></p>
+
+            </div>
+
+          </div>
+
+
+          <!-- VERIFIED STATUS -->
+
+          <div
+            id="verifiedMessage"
+            class="verified-message"
+          >
+            ✅ Email verified. You can place your order.
+          </div>
+
+
+          <!-- PLACE ORDER -->
 
           <button
             type="submit"
             class="submit-button"
             id="submitButton"
+            disabled
           >
-            🛍️ Place Order
+            🔒 Verify Email First
           </button>
 
         </form>
@@ -415,9 +433,7 @@
   </section>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -428,10 +444,9 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
-
   <script src="./script.js"></script>
 
 </body>
 
 </html>
+```
