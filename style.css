@@ -1,6 +1,4 @@
-/* =========================
-   UPI PAYMENT
-========================= */
+/* PAYMENT METHOD */
 
 .upi-box {
   display: none;
@@ -9,9 +7,7 @@
   padding: 22px;
 
   background: #f1f8e9;
-
   border: 2px solid #8bc34a;
-
   border-radius: 15px;
 
   text-align: center;
@@ -31,7 +27,6 @@
   max-width: 100%;
 
   display: block;
-
   margin: 15px auto;
 
   border-radius: 8px;
@@ -42,15 +37,12 @@
 }
 
 
-/* =========================
-   CASH PAYMENT
-========================= */
+/* CASH */
 
 .cash-box {
   display: none;
 
   align-items: center;
-
   gap: 15px;
 
   background: #fff3cd;
