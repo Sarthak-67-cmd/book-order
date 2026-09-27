@@ -113,7 +113,7 @@ loginForm.addEventListener("submit", async (event) => {
     console.error(error);
 
     loginError.textContent =
-      "Login failed. Check your email and password.";
+  error.code + " — " + error.message;
 
   }
 
